@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
+let cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
 /*
  * Display the cards on the page
@@ -9,6 +9,23 @@ var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube'
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ // Sets the position in cards array and card collection to first item
+let arrayPosition = 0;
+
+// Shuffles values of cards array
+cards = shuffle(cards);
+for (i = 1; i <= cards.length; i++) {
+	//creates i element
+	let cardSuit = document.createElement('i');
+
+	// Adds class names fa and random card class to i element to give it's suit
+	cardSuit.classList.add('fa', cards[arrayPosition]);
+	// Appends i element with new classes to each card position
+	document.getElementsByClassName('card')[arrayPosition].appendChild(cardSuit);
+
+	// Advances position in cards array and card collection
+	arrayPosition++;
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
