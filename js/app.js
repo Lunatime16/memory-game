@@ -4,6 +4,8 @@
 let cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
 const deck	= document.getElementsByClassName('deck')[0];
+
+let clickedCards = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -62,5 +64,6 @@ deck.addEventListener('click', showSuit);
 // Reveals card
 function showSuit(event) {
 	event.target.classList.add('open', 'show');
+	clickedCards.push(event.target.firstElementChild);
 }
 
