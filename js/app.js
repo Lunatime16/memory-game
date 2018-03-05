@@ -63,7 +63,17 @@ deck.addEventListener('click', showSuit);
 
 // Reveals card
 function showSuit(event) {
+	let cardClicked = event.target.firstElementChild;
+
 	event.target.classList.add('open', 'show');
-	clickedCards.push(event.target.firstElementChild);
+	clickedCards.push(cardClicked);
+
+	if (cardClicked.indexOf > -1) {
+		document.event.target.classList.add('match');
+	} else {
+		clickedCards.pop();
+		event.target.classList.remove('open', 'show');
+
+	}
 }
 
