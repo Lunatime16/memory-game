@@ -3,6 +3,7 @@
  */
 let cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
+const deck	= document.getElementsByClassName('deck')[0];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -14,12 +15,14 @@ let arrayPosition = 0;
 
 // Shuffles values of cards array
 cards = shuffle(cards);
+
 for (i = 1; i <= cards.length; i++) {
 	//creates i element
 	let cardSuit = document.createElement('i');
 
 	// Adds class names fa and random card class to i element to give it's suit
 	cardSuit.classList.add('fa', cards[arrayPosition]);
+
 	// Appends i element with new classes to each card position
 	document.getElementsByClassName('card')[arrayPosition].appendChild(cardSuit);
 
@@ -53,3 +56,11 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+// Adds click event to cards and activates showSuit function
+deck.addEventListener('click', showSuit);
+
+// Reveals card
+function showSuit(event) {
+	event.target.classList.add('open', 'show');
+}
+
