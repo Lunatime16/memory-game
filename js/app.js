@@ -6,6 +6,8 @@ let cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube'
 const deck	= document.getElementsByClassName('deck')[0];
 
 let clickedCards = [];
+
+let previousCardsClicked = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -63,17 +65,43 @@ deck.addEventListener('click', showSuit);
 
 // Reveals card
 function showSuit(event) {
+	let previousCardClicked = event.target;
 	let cardClicked = event.target.firstElementChild;
-
+	let x = clickedCards.indexOf(String(cardClicked.classList));
 	event.target.classList.add('open', 'show');
-	clickedCards.push(cardClicked);
+	
+	// Adds card clicked to a list
+	clickedCards.push(String(cardClicked.classList));
+	previousCardsClicked.push(previousCardClicked);
+	// Checks if there are more than two cards
+	if (clickedCards.length >= 2)
+		// Checks to see if the card has a matching partner
+		if (x != -1) {
+			// Changes class of the second selected card to show correct match
+			event.target.classList.add('match');
+			event.target.classList.remove('open', 'show');
 
-	if (cardClicked.indexOf > -1) {
-		document.event.target.classList.add('match');
-	} else {
-		clickedCards.pop();
-		event.target.classList.remove('open', 'show');
+			// Changes the first selected card to show correct match
+			previousCardsClicked[0].classList.add('match');
+			previousCardsClicked[0].classList.remove('open', 'show');
+			console.log("first " + clickedCards.indexOf(String(cardClicked.classList)))
+			console.log(x);
+			
+			// Clears both arrays for next pair of cards that match
+			clickedCards.pop();
+			clickedCards.pop();
+			previousCardsClicked.pop();
+			previousCardsClicked.pop();
 
-	}
+		} else {
+			event.target.classList.remove('open', 'show');
+			previousCardsClicked[0].classList.remove('open', 'show');
+			console.log(clickedCards.indexOf(String(cardClicked.classList)))
+			clickedCards.pop();
+			clickedCards.pop();
+			previousCardsClicked.pop();
+			previousCardsClicked.pop();
+		}
 }
 
+//TODO: Make statetments call functions and add a timeout so the user can see the cards
