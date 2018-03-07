@@ -9,6 +9,8 @@ let clickedCards = [];
 
 let previousCardsClicked = [];
 
+let matchedCards = [];
+
 let moves = 0
 
 /*
@@ -90,6 +92,8 @@ function showSuit(event) {
 
 	addMove();
 
+	checkForWin();
+
 }
 
 function hideCard () {
@@ -117,9 +121,19 @@ function match () {
 	clickedCards.pop();
 	previousCardsClicked.pop();
 	previousCardsClicked.pop();
+
+	// Adds matched cards to list to check for win condition
+	matchedCards.push(0);
 }
 
 function addMove () {
+	// Increments move counter
 	moves += 1;
 	document.getElementsByClassName('moves')[0].textContent = moves;
+}
+
+function checkForWin () {
+	if (matchedCards.length == 8) {
+		window.alert('You won in ' + moves + ' moves!');
+	}
 }
