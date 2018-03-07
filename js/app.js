@@ -68,40 +68,49 @@ function showSuit(event) {
 	let previousCardClicked = event.target;
 	let cardClicked = event.target.firstElementChild;
 	let x = clickedCards.indexOf(String(cardClicked.classList));
+
+	deck.removeEventListener('click', showSuit);
+	// Reveals clicked cards
 	event.target.classList.add('open', 'show');
 	
 	// Adds card clicked to a list
 	clickedCards.push(String(cardClicked.classList));
 	previousCardsClicked.push(previousCardClicked);
+
 	// Checks if there are more than two cards
 	if (clickedCards.length >= 2)
 		// Checks to see if the card has a matching partner
 		if (x != -1) {
-			// Changes class of the second selected card to show correct match
-			event.target.classList.add('match');
-			event.target.classList.remove('open', 'show');
-
-			// Changes the first selected card to show correct match
-			previousCardsClicked[0].classList.add('match');
-			previousCardsClicked[0].classList.remove('open', 'show');
-			console.log("first " + clickedCards.indexOf(String(cardClicked.classList)))
-			console.log(x);
-			
-			// Clears both arrays for next pair of cards that match
-			clickedCards.pop();
-			clickedCards.pop();
-			previousCardsClicked.pop();
-			previousCardsClicked.pop();
-
+			match();
 		} else {
-			event.target.classList.remove('open', 'show');
-			previousCardsClicked[0].classList.remove('open', 'show');
-			console.log(clickedCards.indexOf(String(cardClicked.classList)))
-			clickedCards.pop();
-			clickedCards.pop();
-			previousCardsClicked.pop();
-			previousCardsClicked.pop();
-		}
+			setTimeout (hideCard, 1000);
+	}
+	deck.addEventListener('click', showSuit);
 }
 
-//TODO: Make statetments call functions and add a timeout so the user can see the cards
+function hideCard () {
+	// Hides card if not right match
+	previousCardsClicked[0].classList.remove('open', 'show');
+	previousCardsClicked[1].classList.remove('open', 'show');
+	clickedCards.pop();
+	clickedCards.pop();
+	previousCardsClicked.pop();
+	previousCardsClicked.pop();
+
+}
+
+function match () {
+	// Changes class of the second selected card to show correct match
+	event.target.classList.add('match');
+	event.target.classList.remove('open', 'show');
+
+	// Changes the first selected card to show correct match
+	previousCardsClicked[0].classList.add('match');
+	previousCardsClicked[0].classList.remove('open', 'show');
+			
+	// Clears both arrays for next pair of cards that match
+	clickedCards.pop();
+	clickedCards.pop();
+	previousCardsClicked.pop();
+	previousCardsClicked.pop();
+}
