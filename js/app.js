@@ -8,6 +8,9 @@ const deck	= document.getElementsByClassName('deck')[0];
 let clickedCards = [];
 
 let previousCardsClicked = [];
+
+let moves = 0
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -69,7 +72,6 @@ function showSuit(event) {
 	let cardClicked = event.target.firstElementChild;
 	let x = clickedCards.indexOf(String(cardClicked.classList));
 
-	deck.removeEventListener('click', showSuit);
 	// Reveals clicked cards
 	event.target.classList.add('open', 'show');
 	
@@ -85,7 +87,9 @@ function showSuit(event) {
 		} else {
 			setTimeout (hideCard, 1000);
 	}
-	deck.addEventListener('click', showSuit);
+
+	addMove();
+
 }
 
 function hideCard () {
@@ -113,4 +117,9 @@ function match () {
 	clickedCards.pop();
 	previousCardsClicked.pop();
 	previousCardsClicked.pop();
+}
+
+function addMove () {
+	moves += 1;
+	document.getElementsByClassName('moves')[0].textContent = moves;
 }
