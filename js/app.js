@@ -13,7 +13,7 @@ let matchedCards = [];
 
 let moves = 0
 
-// refreshButton = document.getElementsByClassName('fa-repeat')[0];
+const refreshButton = document.getElementsByClassName('fa-repeat')[0];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -69,7 +69,8 @@ function shuffle(array) {
 // Adds click event to cards and activates showSuit function
 deck.addEventListener('click', showSuit);
 
-// refreshButton.addEventListener('click', refresh);
+// Adds click event to refresh symbol
+refreshButton.addEventListener('click', refresh);
 
 // Reveals card
 function showSuit(event) {
@@ -153,6 +154,7 @@ function enableClick () {
 	body.style.pointerEvents = 'auto';
 }
 
-// function refresh () {
-// 	location.reload();
-// }
+function refresh () {
+	// Reloads the page
+	location.reload();
+}
