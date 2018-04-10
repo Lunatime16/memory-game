@@ -14,6 +14,12 @@ let matchedCards = [];
 let moves = 0
 
 const refreshButton = document.getElementsByClassName('fa-repeat')[0];
+
+const starOne = document.getElementsByClassName('fa-star')[0];
+
+const starTwo = document.getElementsByClassName('fa-star')[1];
+
+const starThree = document.getElementsByClassName('fa-star')[2];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -141,6 +147,20 @@ function addMove () {
 	// Increments move counter
 	moves += 1;
 	document.getElementsByClassName('moves')[0].textContent = moves;
+	if (moves >= 18) {
+		// Remove star
+		starOne.remove();
+	} 
+
+	if (moves >= 26) {
+		// Remove star
+		starTwo.remove();
+	}
+
+	if (moves >= 32) {
+		// Remove star
+		starThree.remove();
+	}
 }
 
 function checkForWin () {
