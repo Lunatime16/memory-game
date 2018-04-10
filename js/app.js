@@ -13,6 +13,7 @@ let matchedCards = [];
 
 let moves = 0
 
+// refreshButton = document.getElementsByClassName('fa-repeat')[0];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -68,11 +69,16 @@ function shuffle(array) {
 // Adds click event to cards and activates showSuit function
 deck.addEventListener('click', showSuit);
 
+// refreshButton.addEventListener('click', refresh);
+
 // Reveals card
 function showSuit(event) {
 	let previousCardClicked = event.target;
 	let cardClicked = event.target.firstElementChild;
 	let x = clickedCards.indexOf(String(cardClicked.classList));
+	let body = document.getElementsByTagName('body')[0];
+	
+	body.style.pointerEvents = 'none';
 
 	// Reveals clicked cards
 	event.target.classList.add('open', 'show');
@@ -86,8 +92,12 @@ function showSuit(event) {
 		// Checks to see if the card has a matching partner
 		if (x != -1) {
 			match();
+			enableClick();
 		} else {
 			setTimeout (hideCard, 1000);
+			setTimeout (enableClick, 1000);
+	} else {
+		enableClick();
 	}
 
 	addMove();
@@ -137,3 +147,12 @@ function checkForWin () {
 		window.alert('You won in ' + moves + ' moves!');
 	}
 }
+
+function enableClick () {
+	let body = document.getElementsByTagName('body')[0];
+	body.style.pointerEvents = 'auto';
+}
+
+// function refresh () {
+// 	location.reload();
+// }
