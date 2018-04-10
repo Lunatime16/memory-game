@@ -11,7 +11,7 @@ let previousCardsClicked = [];
 
 let matchedCards = [];
 
-let moves = 0
+let moves = 0;
 
 const refreshButton = document.getElementsByClassName('fa-repeat')[0];
 
@@ -20,6 +20,8 @@ const starOne = document.getElementsByClassName('fa-star')[0];
 const starTwo = document.getElementsByClassName('fa-star')[1];
 
 const starThree = document.getElementsByClassName('fa-star')[2];
+
+let seconds = 0;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -165,7 +167,7 @@ function addMove () {
 
 function checkForWin () {
 	if (matchedCards.length == 8) {
-		window.alert('You won in ' + moves + ' moves!');
+		window.alert('You won in ' + moves + ' moves and ' + seconds + ' seconds!');
 	}
 }
 
@@ -177,4 +179,10 @@ function enableClick () {
 function refresh () {
 	// Reloads the page
 	location.reload();
+}
+
+setInterval (setTime, 1000);
+
+function setTime () {
+	seconds ++;
 }
