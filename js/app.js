@@ -22,6 +22,8 @@ const starTwo = document.getElementsByClassName('fa-star')[1];
 const starThree = document.getElementsByClassName('fa-star')[2];
 
 let seconds = 0;
+
+const winModal = document.getElementById('winModal');
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -167,7 +169,8 @@ function addMove () {
 
 function checkForWin () {
 	if (matchedCards.length == 8) {
-		window.alert('You won in ' + moves + ' moves and ' + seconds + ' seconds!');
+		winModal.style.display = 'block';
+		
 	}
 }
 
