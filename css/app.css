@@ -109,6 +109,7 @@ h1 {
 }
 
 #winModal {
+   /* Code was inspired by https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 on 6/9/18*/
     display: none;
     position: fixed;
     z-index: 1;
@@ -116,7 +117,6 @@ h1 {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background: #ffffff url('../img/geometry2.png');
 }
 
