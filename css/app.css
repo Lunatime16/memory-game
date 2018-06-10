@@ -119,3 +119,14 @@ h1 {
     overflow: auto;
     background: #ffffff url('../img/geometry2.png');
 }
+
+.playAgainButton {
+    background: #02ccba;
+    margin: 0 0 0 45%;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
