@@ -24,6 +24,12 @@ const starThree = document.getElementsByClassName('fa-star')[2];
 let seconds = 0;
 
 const winModal = document.getElementById('winModal');
+
+const winMessage = document.getElementById('winMessage');
+
+let stars = 3;
+
+const playAgainButton = document.getElementsByClassName('playAgainButton')[0];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -81,6 +87,9 @@ deck.addEventListener('click', showSuit);
 
 // Adds click event to refresh symbol
 refreshButton.addEventListener('click', refresh);
+
+// Adds click event for Play Again? button
+playAgainButton.addEventListener('click', refresh);
 
 // Reveals card
 function showSuit(event) {
@@ -154,23 +163,29 @@ function addMove () {
 	if (moves >= 18) {
 		// Remove star
 		starOne.remove();
+		stars = 2;
 	} 
 
 	if (moves >= 26) {
 		// Remove star
 		starTwo.remove();
+		stars = 1;
 	}
 
 	if (moves >= 32) {
 		// Remove star
 		starThree.remove();
+		stars = 0;
 	}
 }
 
 function checkForWin () {
 	if (matchedCards.length == 8) {
+		// Reveals blank background for win message
 		winModal.style.display = 'block';
 		
+		// Writes win message
+		winMessage.textContent = 'With ' + moves + ' Moves and ' + stars + ' Stars.';
 	}
 }
 
