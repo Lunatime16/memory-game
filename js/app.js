@@ -160,19 +160,19 @@ function addMove () {
 	// Increments move counter
 	moves += 1;
 	document.getElementsByClassName('moves')[0].textContent = moves;
-	if (moves >= 18) {
+	if (moves >= 22) {
 		// Remove star
 		starOne.remove();
 		stars = 2;
 	} 
 
-	if (moves >= 26) {
+	if (moves >= 30) {
 		// Remove star
 		starTwo.remove();
 		stars = 1;
 	}
 
-	if (moves >= 32) {
+	if (moves >= 38) {
 		// Remove star
 		starThree.remove();
 		stars = 0;
@@ -190,6 +190,7 @@ function checkForWin () {
 }
 
 function enableClick () {
+	// Enables click after event
 	let body = document.getElementsByTagName('body')[0];
 	body.style.pointerEvents = 'auto';
 }
@@ -202,5 +203,6 @@ function refresh () {
 setInterval (setTime, 1000);
 
 function setTime () {
+	// Increases time
 	seconds ++;
 }
